@@ -1,2 +1,2 @@
 # computerVision-basic-radon
-Radon Transform
+Radon Transform of an Image
