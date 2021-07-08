@@ -30,7 +30,7 @@ int main()
 		0, 0, 1 };
 	Mat m0 = Mat(3, 3, CV_32FC1, shift0);
 	Mat m1 = Mat(3, 3, CV_32FC1, shift1);
-	float *theta = new float[angle];//旋转角度
+	float * theta = new float[angle];
 	for (int t = 0; t<360; t++)
 	{
 		theta[t] = t*CV_PI / angle;
@@ -38,15 +38,15 @@ int main()
 			-sin(theta[t]), cos(theta[t]), 0,
 			0, 0, 1 };
 		Mat mR = Mat(3, 3, CV_32FC1, R);
-		Mat rotation = m1*mR*m0;
+		Mat rotation = m1 * mR * m0;
 		Mat rotated;
 		warpPerspective(dst, rotated, rotation, Size(dst.rows, dst.cols), WARP_INVERSE_MAP);
 		for (int j = 0; j<rotated.cols; j++)
 		{
-			float *p1 = radon_image.ptr<float>(j);
+			float * p1 = radon_image.ptr<float>(j);
 			for (int i = 0; i<rotated.rows; i++)
 			{
-				float *p2 = rotated.ptr<float>(i);
+				float * p2 = rotated.ptr<float>(i);
 				p1[t] += p2[j];
 			}
 		}
